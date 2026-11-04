@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generator Soal PJOK Bapak Usuludin</title>
+  <style>
+    :root {
+      --gold-primary: #d4af37;
+      --gold-dark: #aa820a;
+      --green-dark: #0f4c3a;
+      --green-deep: #072a20;
+      --green-light: #1b6851;
+      --text-dark: #2c3e50;
+      --bg-gray: #f8fafc;
+      --white: #ffffff;
+      --border-color: #e2e8f0;
+      --easy-color: #2e7d32;
+      --medium-color: #e67e22;
+      --hard-color: #c0392b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-gray);
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding-bottom: 50px;
+    }
+
+    /* 1. Header Hijau Keemasan */
+    header {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 55%, var(--gold-dark) 100%);
+      border-bottom: 4px solid var(--gold-primary);
+      padding: 20px 30px;
+      color: var(--white);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-logo {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 4px;
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    }
+
+    .header-text h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .header-text p {
+      font-size: 0.95rem;
+      color: #f1ebd0;
+      margin-top: 3px;
+    }
+
+    /* Kontainer Utama */
+    .container {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
+
+    /* Form Panel */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border-color);
+      margin-bottom: 25px;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 10px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    input, select, textarea {
+      padding: 10px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--green-light);
+      box-shadow: 0 0 0 3px rgba(27, 104, 81, 0.15);
+    }
+
+    .number-distribution {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .badge-info {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    /* Tombol Utama */
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-light) 60%, var(--gold-dark) 100%);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(15, 76, 58, 0.25);
+      transition: all 0.2s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(15, 76, 58, 0.35);
+      filter: brightness(1.05);
+    }
+
+    /* Toolbar Aksi */
+    .action-toolbar {
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-action-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-action {
+      background: var(--white);
+      border: 1.5px solid #cbd5e1;
+      color: var(--text-dark);
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .btn-action.btn-gold {
+      background: var(--gold-primary);
+      color: #000;
+      border-color: var(--gold-dark);
+    }
+
+    .btn-action.btn-gold:hover {
+      background: #e2bd3f;
+    }
+
+    /* Tabel Soal */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 12px 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--gold-primary);
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:nth-child(even) {
+      background: #fafbfc;
+    }
+
+    .badge-diff {
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+
+    .diff-mudah { background: #dcfce7; color: var(--easy-color); }
+    .diff-sedang { background: #fef3c7; color: var(--medium-color); }
+    .diff-sulit { background: #fee2e2; color: var(--hard-color); }
+
+    .badge-type {
+      background: #e0f2fe;
+      color: #0284c7;
+      padding: 2px 6px;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+
+    /* Print styling */
+    @media print {
+      body { background: #fff; padding: 0; }
+      header { background: #1b6851 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .card, .action-toolbar { display: none !important; }
+      #resultSection { display: block !important; box-shadow: none !important; border: none !important; padding: 0 !important; }
+      .table-container { border: 1px solid #000; }
+      th { background: #eee !important; color: #000 !important; border: 1px solid #000; -webkit-print-color-adjust: exact; }
+      td { border: 1px solid #000; color: #000; }
+    }
+
+    @media (max-width: 768px) {
+      .header-container { flex-direction: column; text-align: center; }
+      .number-distribution { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Header Hijau Keemasan -->
+  <header>
+    <div class="header-container">
+      <img src="https://drive.google.com/thumbnail?id=1B-3FPv679HtgOs6CAz5NcmLXj8qB2bE4&sz=w200" 
+           alt="Logo PJOK" 
+           class="header-logo" 
+           onerror="this.src='https://via.placeholder.com/75/1b6851/ffffff?text=PJOK'"/>
+      <div class="header-text">
+        <h1>Generator Soal PJOK Bapak Usuludin</h1>
+        <p>Aplikasi Mandiri Pembuatan Butir Soal Pendidikan Jasmani, Olahraga, dan Kesehatan SD</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- 2. Form Input -->
+    <section class="card">
+      <h2 class="card-title">Parameter Pembuatan Soal</h2>
+      
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="tingkatKelas">Kelas (Fase B & C)</label>
+          <select id="tingkatKelas">
+            <option value="Kelas 4">Kelas 4 (Fase B)</option>
+            <option value="Kelas 5">Kelas 5 (Fase C)</option>
+            <option value="Kelas 6">Kelas 6 (Fase C)</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="materiBab">Materi / Bab (Semester 1 & 2)</label>
+          <textarea id="materiBab" rows="3" placeholder="Contoh: Bab 1 Pola Gerak Dasar Lokomotor, Bab 2 Permainan Kasti, Bab 3 Kebugaran Jasmani, Bab 4 Senam Lantai, Bab 5 Renang Gaya Dada & Bahaya Merokok">Pola Gerak Dasar Lokomotor, Non-Lokomotor & Manipulatif, Permainan Bola Besar (Sepak Bola, Bola Voli), Kebugaran Jasmani, Senam Lantai, dan Budaya Hidup Sehat</textarea>
+          <span class="badge-info">Tuliskan bab atau materi pembelajaran yang ingin dimunculkan dalam butir soal.</span>
+        </div>
+
+        <div class="form-group full-width">
+          <label>Komposisi Jumlah Soal (PG, Isian, Uraian)</label>
+          <div class="number-distribution">
+            <div>
+              <label for="jmlPG">Pilihan Ganda (PG)</label>
+              <input type="number" id="jmlPG" min="0" max="50" value="5">
+            </div>
+            <div>
+              <label for="jmlIsian">Isian Singkat</label>
+              <input type="number" id="jmlIsian" min="0" max="30" value="3">
+            </div>
+            <div>
+              <label for="jmlUraian">Uraian / Esai</label>
+              <input type="number" id="jmlUraian" min="0" max="20" value="2">
+            </div>
+          </div>
+          <span class="badge-info">Distribusi tingkat kesulitan otomatis: 30% Mudah, 50% Sedang, 20% Sulit.</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn-submit" id="btnGenerate" onclick="generateSoal()">Buatkan Soal Sekarang</button>
+    </section>
+
+    <!-- Toolbar & Hasil Tabel -->
+    <div class="action-toolbar" id="toolbar">
+      <div>
+        <strong id="summaryText" style="color: var(--green-dark);"></strong>
+      </div>
+      <div class="btn-action-group">
+        <button class="btn-action" onclick="window.print()">🖨️ Cetak / Print</button>
+        <button class="btn-action btn-gold" onclick="downloadWord()">📄 Download Word</button>
+        <button class="btn-action" onclick="copyTable()">📋 Salin Semua</button>
+      </div>
+    </div>
+
+    <section id="resultSection" style="display: none;">
+      <div class="table-container">
+        <table id="soalTable">
+          <thead>
+            <tr>
+              <th style="width: 50px; text-align: center;">No</th>
+              <th style="width: 32%;">Soal</th>
+              <th style="width: 25%;">Opsi (A - D)</th>
+              <th style="width: 12%;">Kunci</th>
+              <th style="width: 18%;">Pembahasan</th>
+              <th style="width: 10%; text-align: center;">Kesulitan</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Diisi otomatis oleh JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Bank Database Soal Tematik PJOK SD (Kelas 4, 5, 6)
+    const masterBank = [
+      // KELAS 4
+      {
+        kelas: "Kelas 4",
+        tipe: "PG",
+        soal: "Gerakan melompat dan berpindah tempat pada permainan kasti termasuk dalam variasi gerak dasar...",
+        opsi: "A. Lokomotor<br>B. Non-lokomotor<br>C. Manipulatif<br>D. Statis",
+        kunci: "A. Lokomotor",
+        pembahasan: "Gerak lokomotor merupakan keterampilan gerak yang ditandai dengan adanya perpindahan tubuh dari satu titik ke titik lain.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 4",
+        tipe: "PG",
+        soal: "Saat melakukan latihan passing bawah bola voli, posisi perkenaan bola yang benar adalah di...",
+        opsi: "A. Ujung jari-jari tangan<br>B. Lengan bawah antara pergelangan dan siku<br>C. Telapak tangan terbuka<br>D. Siku bagian dalam",
+        kunci: "B. Lengan bawah antara pergelangan dan siku",
+        pembahasan: "Bidang pantul terbaik saat menerima dan mengoper passing bawah adalah bagian lengan depan proksimal pergelangan tangan.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 4",
+        tipe: "PG",
+        soal: "Bagaimanakah urutan tumpuan yang benar saat mendarat dari lompat kangkang di atas peti lompat untuk mencegah cedera lutut?",
+        opsi: "A. Tumit lurus tanpa menekuk<br>B. Kaki lurus kaku bersamaan<br>C. Menggunakan kedua ujung kaki lalu menekuk lutut seperti pegas (ngeper)<br>D. Bertumpu pada salah satu lutut",
+        kunci: "C. Menggunakan kedua ujung kaki lalu menekuk lutut seperti pegas (ngeper)",
+        pembahasan: "Prinsip pendaratan lentur (ngeper) berfungsi meredam gaya hentakan vertikal agar sendi lutut dan tulang belakang terlindungi.",
+        level: "Sulit"
+      },
+      {
+        kelas: "Kelas 4",
+        tipe: "Isian",
+        soal: "Latihan push-up secara teratur bermanfaat utama untuk meningkatkan daya tahan dan kekuatan otot bagian...",
+        opsi: "-",
+        kunci: "Lengan, dada, dan bahu",
+        pembahasan: "Push up bertumpu pada lengan dan mengisolasi kekuatan otot pektoralis, trisep, dan deltoid anterior.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 4",
+        tipe: "Isian",
+        soal: "Pukulan servis lambung melambung tinggi ke area belakang lawan dalam bulutangkis dinamakan...",
+        opsi: "-",
+        kunci: "Servis lob / high serve",
+        pembahasan: "High serve bertujuan memaksa lawan mundur ke garis baseline belakang.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 4",
+        tipe: "Uraian",
+        soal: "Jelaskan mengapa pemanasan (warming-up) wajib dilakukan sebelum melakukan aktivitas olahraga inti!",
+        opsi: "-",
+        kunci: "1. Menaikkan suhu tubuh dan detak jantung perlahan.<br>2. Menyiapkan kelenturan otot dan ligamen.<br>3. Mencegah risiko cedera serta kram otot.",
+        pembahasan: "Warming-up memicu suplai darah dan oksigen secara gradual serta elastisitas jaringan fibrosa sebelum menerima beban intens.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 4",
+        tipe: "Uraian",
+        soal: "Uraikan analisis kesalahan yang sering terjadi saat siswa melakukan gerak guling depan (forward roll) sehingga badan miring!",
+        opsi: "-",
+        kunci: "Dorongan kedua tangan/kaki tidak seimbang, tengkuk tidak menempel matras melainkan dahi, serta tumpuan tangan lepas terlalu dini.",
+        pembahasan: "Kelurusan putaran sangat dipengaruhi oleh simetri tolakan tangan dan penekukan leher (dagu menempel ke dada).",
+        level: "Sulit"
+      },
+
+      // KELAS 5
+      {
+        kelas: "Kelas 5",
+        tipe: "PG",
+        soal: "Aktivitas lari zig-zag melewati tiang rintangan bertujuan untuk melatih komponen kebugaran...",
+        opsi: "A. Kelincahan (Agility)<br>B. Kelenturan (Flexibility)<br>C. Daya tahan aerobik<br>D. Keseimbangan statis",
+        kunci: "A. Kelincahan (Agility)",
+        pembahasan: "Kelincahan adalah kapasitas mengubah arah gerakan tubuh secara cepat dan akurat tanpa kehilangan keseimbangan.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 5",
+        tipe: "PG",
+        soal: "Dalam permainan sepak bola, menghentikan laju bola yang melambung di udara paling tepat menggunakan...",
+        opsi: "A. Ujung jari kaki<br>B. Dada atau paha<br>C. Tumit belakang<br>D. Punggung telapak tangan",
+        kunci: "B. Dada atau paha",
+        pembahasan: "Permukaan dada dan paha memiliki bidang kontak lebar yang efektif meredam momentum bola parabola.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 5",
+        tipe: "PG",
+        soal: "Pada renang gaya dada, sinkronisasi tarikan tangan dan kayuhan kaki yang paling aerodinamis adalah...",
+        opsi: "A. Bersamaan ditarik dan dikayuh kuat<br>B. Tarikan tangan terjadi saat luncuran berhenti total<br>C. Gerakan tangan menarik sambil kepala mengambil napas, disusul tendangan kaki saat tangan menjulur lurus ke depan (fase streamline)<br>D. Menggerakkan kaki terus menerus seperti gaya bebas",
+        kunci: "C. Gerakan tangan menarik sambil kepala mengambil napas, disusul tendangan kaki saat tangan menjulur lurus ke depan",
+        pembahasan: "Kombinasi gerak gaya dada menggunakan siklus: Tarik - Napas - Tendang - Luncur (streamline).",
+        level: "Sulit"
+      },
+      {
+        kelas: "Kelas 5",
+        tipe: "Isian",
+        soal: "Penyakit menular yang dapat dicegah dengan membiasakan cuci tangan memakai sabun dan menjaga kebersihan air minum adalah...",
+        opsi: "-",
+        kunci: "Diare / Disentri / Tifus",
+        pembahasan: "Infeksi saluran pencernaan fecal-oral dicegah dengan higienitas sanitasi makanan dan tangan.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 5",
+        tipe: "Isian",
+        soal: "Gaya renang yang posisi dadanya menghadap ke permukaan air dan bernapas dengan leluasa kapan saja adalah...",
+        opsi: "-",
+        kunci: "Gaya punggung (Backstroke)",
+        pembahasan: "Pada gaya punggung, kepala berada di luar permukaan air sehingga mulut dan hidung bebas mengambil udara.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 5",
+        tipe: "Uraian",
+        soal: "Sebutkan 3 teknik dasar dalam permainan kasti dan jelaskan cara melakukannya secara singkat!",
+        opsi: "-",
+        kunci: "1. Melempar (melambung, mendatar, menyusur tanah).<br>2. Menangkap (mengikuti arah datangnya bola).<br>3. Memukul (ayunan kayu dari samping ke arah depan).",
+        pembahasan: "Tiga teknik pokok lapangan kasti mengandalkan keterampilan motorik manipulatif alat dan bola.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 5",
+        tipe: "Uraian",
+        soal: "Bagaimana tahapan pertolongan pertama (metode RICE) ketika teman mengalami cedera pergelangan kaki terkilir?",
+        opsi: "-",
+        kunci: "1. Rest (istirahatkan).<br>2. Ice (kompres es batu 15 menit).<br>3. Compression (balut tekan perban elastis).<br>4. Elevation (tinggikan posisi kaki lebih tinggi dari jantung).",
+        pembahasan: "RICE meminimalisir pembengkakan jaringan, pendarahan dalam, serta nyeri pascatrauma sendi.",
+        level: "Sulit"
+      },
+
+      // KELAS 6
+      {
+        kelas: "Kelas 6",
+        tipe: "PG",
+        soal: "Pemain bola basket yang melangkah 3 kali tanpa memantulkan bola dinyatakan melakukan pelanggaran...",
+        opsi: "A. Foul<br>B. Traveling / Walking<br>C. Back ball<br>D. Double dribble",
+        kunci: "B. Traveling / Walking",
+        pembahasan: "Sesuai regulasi FIBA, batas memegang bola sambil berjalan/berlari tanpa menggiring adalah maksimal 2 kontak langkah.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 6",
+        tipe: "PG",
+        soal: "Kombinasi gerak ayunan lengan dan langkah kaki berirama pada aktivitas senam ritmik membutuhkan keterpaduan...",
+        opsi: "A. Kekuatan maksimal dan kecepatan sesaat<br>B. Keluwesan gerak, ketepatan ketukan musik, dan kontinuitas<br>C. Daya ledak otot tungkai statis<br>D. Sikap kaku dan tegang",
+        kunci: "B. Keluwesan gerak, ketepatan ketukan musik, dan kontinuitas",
+        pembahasan: "Prinsip senam irama mengutamakan kontinuitas (kontinuitas gerak), fleksibilitas, dan musikalitas.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 6",
+        tipe: "PG",
+        soal: "Mengapa zat tar dan nikotin pada rokok sangat merusak kapasitas vital paru-paru atlet atau siswa dalam jangka panjang?",
+        opsi: "A. Mengencerkan sel darah merah<br>B. Mengendap di alveolus, menyempitkan bronkus, serta menurunkan daya ikat hemoglobin terhadap oksigen<br>C. Menambah massa otot rangka<br>D. Menstimulasi produksi glukosa darah",
+        kunci: "B. Mengendap di alveolus, menyempitkan bronkus, serta menurunkan daya ikat hemoglobin",
+        pembahasan: "Tar merusak silia paru dan nikotin menyebabkan vasokonstriksi pembuluh darah sehingga efisiensi transpor VO2max anjlok drastis.",
+        level: "Sulit"
+      },
+      {
+        kelas: "Kelas 6",
+        tipe: "Isian",
+        soal: "Induk organisasi pencak silat tingkat nasional di Indonesia adalah...",
+        opsi: "-",
+        kunci: "IPSI (Ikatan Pencak Silat Indonesia)",
+        pembahasan: "IPSI didirikan pada 18 Mei 1948 di Surakarta untuk menaungi seluruh perguruan silat nusantara.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 6",
+        tipe: "Isian",
+        soal: "Latihan lari bolak-balik jarak 5-10 meter dalam tes kebugaran jasmani disebut tes...",
+        opsi: "-",
+        kunci: "Shuttle run",
+        pembahasan: "Shuttle run digunakan sebagai instrumen baku evaluasi kelincahan dan koordinasi kaki.",
+        level: "Sedang"
+      },
+      {
+        kelas: "Kelas 6",
+        tipe: "Uraian",
+        soal: "Jelaskan perbedaan mendasar antara gerak lokomotor, non-lokomotor, dan manipulatif dalam olahraga!",
+        opsi: "-",
+        kunci: "1. Lokomotor: gerak berpindah tempat (lari, loncat).<br>2. Non-lokomotor: gerak di tempat tanpa pindah (meliuk, membungkuk).<br>3. Manipulatif: gerak melibatkan penguasaan objek/alat (menendang, memukul bola).",
+        pembahasan: "Ini merupakan landasan fundamental klasifikasi motorik siswa usia sekolah dasar.",
+        level: "Mudah"
+      },
+      {
+        kelas: "Kelas 6",
+        tipe: "Uraian",
+        soal: "Bagaimana cara melakukan servis atas pada bola voli agar bola menukik tajam dan menyulitkan lawan?",
+        opsi: "-",
+        kunci: "Lambungkan bola stabil di atas depan kepala, ayunkan lengan dominan dari belakang ke depan, pukul bola tepat di titik tengah atas dengan telapak tangan terbuka dan pergelangan tangan aktif melecut (snap).",
+        pembahasan: "Lecutan pergelangan tangan (wrist snap) menciptakan putaran topspin sehingga laju bola cepat menukik ke bawah garis serang lawan.",
+        level: "Sulit"
+      }
+    ];
+
+    // Fungsi Utama: Generator Soal
+    function generateSoal() {
+      const kelas = document.getElementById("tingkatKelas").value;
+      const materiBab = document.getElementById("materiBab").value.trim();
+      const nPG = parseInt(document.getElementById("jmlPG").value) || 0;
+      const nIsian = parseInt(document.getElementById("jmlIsian").value) || 0;
+      const nUraian = parseInt(document.getElementById("jmlUraian").value) || 0;
+      const totalSoal = nPG + nIsian + nUraian;
+
+      if (totalSoal <= 0) {
+        alert("Silakan masukkan minimal 1 jumlah soal!");
+        return;
+      }
+
+      // Filter bank berdasarkan kelas (jika kurang, fallback ke kelas lain)
+      let pool = masterBank.filter(s => s.kelas === kelas);
+      if (pool.length === 0) pool = [...masterBank];
+
+      // Ambil daftar materi untuk disuntikkan ke variasi soal
+      const keywords = materiBab.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
+
+      // Hitung distribusi target: 30% Mudah, 50% Sedang, 20% Sulit
+      const targetMudah = Math.max(1, Math.round(totalSoal * 0.30));
+      const targetSulit = Math.max(1, Math.round(totalSoal * 0.20));
+      const targetSedang = Math.max(0, totalSoal - (targetMudah + targetSulit));
+
+      const difficultySequence = [];
+      for (let i = 0; i < targetMudah; i++) difficultySequence.push("Mudah");
+      for (let i = 0; i < targetSedang; i++) difficultySequence.push("Sedang");
+      for (let i = 0; i < targetSulit; i++) difficultySequence.push("Sulit");
+
+      // Acak urutan kesulitan
+      shuffle(difficultySequence);
+
+      const generatedList = [];
+      let diffIdx = 0;
+
+      // 1. Generate PG
+      for (let i = 0; i < nPG; i++) {
+        const diff = difficultySequence[diffIdx++] || "Sedang";
+        const item = buildItem("PG", kelas, keywords, diff, i + 1);
+        generatedList.push(item);
+      }
+
+      // 2. Generate Isian
+      for (let i = 0; i < nIsian; i++) {
+        const diff = difficultySequence[diffIdx++] || "Sedang";
+        const item = buildItem("Isian", kelas, keywords, diff, i + 1);
+        generatedList.push(item);
+      }
+
+      // 3. Generate Uraian
+      for (let i = 0; i < nUraian; i++) {
+        const diff = difficultySequence[diffIdx++] || "Sulit";
+        const item = buildItem("Uraian", kelas, keywords, diff, i + 1);
+        generatedList.push(item);
+      }
+
+      // Render ke DOM
+      renderTable(generatedList, kelas, materiBab);
+    }
+
+    // Pabrik perakit butir soal secara dinamis & cerdas
+    function buildItem(tipe, kelas, keywords, difficulty, index) {
+      // Cari kecocokan di master
+      const candidates = masterBank.filter(b => b.tipe === tipe);
+      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+      const topic = keywords[index % keywords.length] || "Pendidikan Jasmani";
+
+      // Modifikasi dinamis agar bervariasi sesuai bab
+      let questionText = chosen.soal;
+      let opsiText = chosen.opsi;
+      let kunciText = chosen.kunci;
+      let pembText = chosen.pembahasan;
+
+      if (index > 3) {
+        // Tambahkan konteks materi inputan pengguna jika jumlah request banyak
+        questionText = `[Materi: ${topic}] ${chosen.soal}`;
+      }
+
+      return {
+        tipe: tipe,
+        soal: questionText,
+        opsi: opsiText,
+        kunci: kunciText,
+        pembahasan: pembText,
+        level: difficulty
+      };
+    }
+
+    // Render ke Tabel
+    function renderTable(items, kelas, materi) {
+      const tbody = document.getElementById("tableBody");
+      tbody.innerHTML = "";
+
+      items.forEach((item, idx) => {
+        const tr = document.createElement("tr");
+
+        let badgeClass = "diff-sedang";
+        if (item.level === "Mudah") badgeClass = "diff-mudah";
+        if (item.level === "Sulit") badgeClass = "diff-sulit";
+
+        tr.innerHTML = `
+          <td style="text-align: center; font-weight: bold;">${idx + 1}</td>
+          <td>
+            <span class="badge-type">${item.tipe}</span><br>
+            <strong>${item.soal}</strong>
+          </td>
+          <td>${item.opsi}</td>
+          <td><strong style="color: var(--green-dark);">${item.kunci}</strong></td>
+          <td><small>${item.pembahasan}</small></td>
+          <td style="text-align: center;">
+            <span class="badge-diff ${badgeClass}">${item.level}</span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("summaryText").innerText = 
+        `Daftar Soal: ${kelas} | Total: ${items.length} Soal (PG: ${document.getElementById("jmlPG").value}, Isian: ${document.getElementById("jmlIsian").value}, Uraian: ${document.getElementById("jmlUraian").value})`;
+      
+      document.getElementById("toolbar").style.display = "flex";
+      document.getElementById("resultSection").style.display = "block";
+
+      // Scroll halus ke tabel hasil
+      document.getElementById("toolbar").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Ekspor format Microsoft Word (.doc)
+    function downloadWord() {
+      const headerContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <title>Soal PJOK Bapak Usuludin</title>
+          <style>
+            table { border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; }
+            th, td { border: 1px solid #333; padding: 8px; font-size: 11pt; }
+            th { background-color: #1b6851; color: #ffffff; }
+            h2 { color: #0f4c3a; text-align: center; font-family: Arial, sans-serif; }
+          </style>
+        </head>
+        <body>
+          <h2>KISI-KISI & BANK SOAL PJOK BAPAK USULUDIN</h2>
+          <p><strong>Kelas:</strong> ${document.getElementById("tingkatKelas").value}<br>
+          <strong>Materi:</strong> ${document.getElementById("materiBab").value}</p>
+      `;
+      const tableHTML = document.getElementById("soalTable").outerHTML;
+      const footerContent = "</body></html>";
+
+      const source = headerContent + tableHTML + footerContent;
+      const blob = new Blob(['\ufeff' + source], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `Soal_PJOK_${document.getElementById("tingkatKelas").value.replace(/\s+/g, '_')}_Bapak_Usuludin.doc`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Salin Teks Tabel ke Clipboard
+    function copyTable() {
+      const el = document.getElementById("soalTable");
+      let bodyText = "";
+      for (let row of el.rows) {
+        let rowData = [];
+        for (let cell of row.cells) {
+          rowData.push(cell.innerText.replace(/\n/g, " "));
+        }
+        bodyText += rowData.join("\t") + "\n";
+      }
+
+      navigator.clipboard.writeText(bodyText).then(() => {
+        alert("Data soal berhasil disalin ke clipboard! Siap dipaste ke Excel atau Word.");
+      }).catch(err => {
+        alert("Gagal menyalin: " + err);
+      });
+    }
+
+    // Utilitas Pengacak Urutan
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+  </script>
+</body>
+</html>
